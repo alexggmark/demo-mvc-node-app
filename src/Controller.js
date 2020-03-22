@@ -9,4 +9,8 @@ export default class Controller {
     // bind view.add
     // this.onchange(model.list) - to render on start
   }
+
+  // => onchange view.display
+
+  // => handleadd model.add
 }

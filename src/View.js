@@ -9,4 +9,8 @@ export default class View {
     const element = document.querySelector(selector);
     return element;
   }
+
+  // display list
+
+  // bindadd
 }
