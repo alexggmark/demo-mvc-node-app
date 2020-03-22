@@ -1,0 +1,27 @@
+{
+  "name": "demo-classes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "webpack-cli": "^3.3.11",
+    "webpack": "^4.42.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "webpack-dev-server --https"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexggmark/demo-classes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexggmark/demo-classes/issues"
+  },
+  "homepage": "https://github.com/alexggmark/demo-classes#readme"
+}
