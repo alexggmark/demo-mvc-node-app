@@ -5,12 +5,16 @@ export default class Controller {
     this.model = model;
     this.view = view;
 
-    // bind model.change
-    // bind view.add
-    // this.onchange(model.list) - to render on start
+    this.model.bindChange(this.changeList);
+    this.view.bindAdd(this.handleAdd);
+    this.changeList(this.model.list);
   }
 
-  // => onchange view.display
+  changeList = items => {
+    this.view.displayList(items);
+  }
 
-  // => handleadd model.add
+  handleAdd = item => {
+    this.model.addItem(item);
+  }
 }
