@@ -1,9 +1,5 @@
-function component() {
-  const element = document.createElement('div');
+import Model from './Model'
+import View from './View'
+import Controller from './Controller'
 
-  element.innerHTML = 'Hello webpack';
-
-  return element;
-}
-
-document.body.appendChild(component());
+const app = new Controller(new Model(), new View());
