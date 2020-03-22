@@ -2,23 +2,27 @@ console.log('Model');
 
 export default class Model {
   constructor() {
-    this.todos = [
-      { name: 'Alex' },
-      { name: 'John' }
-    ]
+    this.people = [
+      {
+        name: 'L Dot',
+      },
+      {
+        name: 'Smiffy Boy',
+      },
+    ];
   }
 
-  addData(name, age) {
+  addName(name) {
     const personData = {
       name: name,
-      age: age
     }
 
-    this.todos.push(personData);
-    this.onTodoListChanged(this.todos)
+    this.people.push(personData);
+    this.onListChange(this.people);
   }
 
-  bindTodoListChanged(callback) {
-    this.onTodoListChanged = callback;
+
+  bindListChange(callback) {
+    this.onListChange = callback;
   }
 }

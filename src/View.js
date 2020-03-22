@@ -2,69 +2,54 @@ console.log('View');
 
 export default class View {
   constructor() {
-    this.app = this.getElement('#app');
+    this.app = this.querySelector('#app');
 
+    this.list = this.createElement('li');
     this.form = this.createElement('form');
     this.input = this.createElement('input');
-    this.input.type = 'text';
-    this.input.placeholder = 'Add item';
-    this.input.name = 'todo';
+    this.button = this.createElement('button');
+    this.button.textContent = 'Add';
 
-    this.submitButton = this.createElement('button');
-    this.submitButton.textContent = 'Submit';
+    this.form.appendChild(this.input);
+    this.form.appendChild(this.button);
 
-    this.todoList = this.createElement('ul')
+    this.app.appendChild(this.form);
+    this.app.appendChild(this.list);
+  }
 
-    this.form.append(this.input, this.submitButton)
-
-    this.app.append(this.form, this.todoList)
+  querySelector(selector) {
+    const element = document.querySelector(selector);
+    return element;
   }
 
   createElement(tag) {
     const element = document.createElement(tag);
-
     return element;
   }
 
-  getElement(selector) {
-    const element = document.querySelector(selector);
-
-    return element;
+  get _inputValue() {
+    return this.input.value;
   }
 
-  get _todoText() {
-    return this.input.value
-  }
-
-  displayTodos(todos) {
-    while (this.todoList.firstChild) {
-      this.todoList.removeChild(this.todoList.firstChild);
+  displayPeopleList(people) {
+    while (this.list.firstChild) {
+      this.list.removeChild(this.list.firstChild);
     }
 
-    if (todos.length === 0) {
-      const p = this.createElement('p');
-      p.textContent = 'No todos';
-      this.todoList.append(p);
+    people.forEach((person) => {
+      const element = this.createElement('li');
+      element.textContent = person.name;
 
-      return;
-    }
-
-    todos.forEach((todo) => {
-      const li = this.createElement('li');
-
-      li.textContent = todo.name;
-
-      this.todoList.append(li);
+      this.list.append(element);
     })
   }
 
-  bindAddTodo(handler) {
+  bindAdd(handler) {
     this.form.addEventListener('submit', event => {
-      event.preventDefault()
+      event.preventDefault();
 
-      if (this._todoText) {
-        handler(this._todoText)
-      }
+      if (!this._inputValue) { return; }
+      handler(this._inputValue);
     })
   }
 }

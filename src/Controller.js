@@ -5,17 +5,17 @@ export default class Controller {
     this.model = model;
     this.view = view;
 
-    this.model.bindTodoListChanged(this.onTodoListChanged)
-    this.view.bindAddTodo(this.handleAddTodo)
+    this.model.bindListChange(this.onListChange);
+    this.view.bindAdd(this.handleAdd);
 
-    this.onTodoListChanged(this.model.todos);
+    this.onListChange(this.model.people);
   }
 
-  onTodoListChanged = todos => {
-    this.view.displayTodos(todos);
+  onListChange = people => {
+    this.view.displayPeopleList(people);
   }
 
-  handleAddTodo = todoText => {
-    this.model.addData(todoText)
+  handleAdd = person => {
+    this.model.addName(person);
   }
 }
