@@ -1,30 +1,43 @@
-const path = require('path');
+const path = require('path')
+const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    server: './server.js',
+  },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'main.js'
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 8080
+  target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false,
   },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env',
-              { 'plugins': ['@babel/plugin-proposal-class-properties']}
-            ]
-          }
+          loader: "babel-loader"
         }
+      },
+      {
+        test: /\.html$/,
+        use: [{loader: "html-loader"}]
       }
     ]
-  }
-};
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./index.html",
+      filename: "./index.html",
+      excludeChunks: [ 'server' ]
+    })
+  ]
+}

@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack-dev-server --config webpack.config.js --https"
+    "build": "rm -rf dist && webpack --mode development",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -18,14 +18,18 @@
   },
   "homepage": "https://github.com/alexggmark/demo-mvc-node-app#readme",
   "devDependencies": {
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^4.0.2",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
+    "express": "^4.17.1",
     "webpack-dev-server": "^3.10.3"
   }
 }
