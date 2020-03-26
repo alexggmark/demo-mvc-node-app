@@ -5,12 +5,15 @@ export default class View {
     this.app = this.querySelector('#app');
     this.title = this.createElement('h1');
     this.title.textContent = 'The list';
+    this.counter = this.createElement('p');
     this.list = this.createElement('ul');
     this.item = this.createElement('li');
     this.button = this.createElement('button');
+    this.button.textContent = 'Add Barry!';
     this.app.append(this.title);
-    this.app.append(this.list);
+    this.app.append(this.counter);
     this.app.append(this.button);
+    this.app.append(this.list);
   }
 
   querySelector(selector) {
@@ -24,10 +27,12 @@ export default class View {
   }
 
   // display list
-  displayList(items) {
+  displayList(items, counter) {
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
     }
+
+    this.counter.textContent = counter;
 
     items.forEach((item) => {
       const element = this.createElement('li');

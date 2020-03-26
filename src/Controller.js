@@ -7,11 +7,11 @@ export default class Controller {
 
     this.model.bindChange(this.changeList);
     this.view.bindAdd(this.handleAdd);
-    this.changeList(this.model.list);
+    this.changeList(this.model.list, this.model.counter);
   }
 
-  changeList = items => {
-    this.view.displayList(items);
+  changeList = (items, counter) => {
+    this.view.displayList(items, counter);
   }
 
   handleAdd = item => {

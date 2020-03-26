@@ -6,13 +6,15 @@ export default class Model {
       'John',
       'Mark',
       'Toby'
-    ]
+    ];
+    this.counter = 0;
   }
 
   // add
   addItem(item) {
     this.list.push(item);
-    this.changeList(this.list);
+    this.counter++;
+    this.changeList(this.list, this.counter);
   }
 
   // bindchange
