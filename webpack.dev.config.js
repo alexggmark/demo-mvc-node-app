@@ -1,7 +1,7 @@
-const path = require("path")
+const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
-
 module.exports = {
   entry: {
     main: './src/index.js'
@@ -9,32 +9,35 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'main.js'
   },
   target: 'web',
   devtool: 'source-map',
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: {
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-          }
-        ]
+        use: [{loader: "html-loader"}]
       },
       {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
       },
       {
-       test: /\.(png|svg|jpg|gif)$/,
-       use: ['file-loader']
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   },
