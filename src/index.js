@@ -1,8 +1,8 @@
-import logMessage from './js/logger'
+import { Model, View, Controller } from './js/api'
 import './css/style.css'
-// Log message to console
-logMessage('Welcome to Expack!')
+
+const app = new Controller(new Model(), new View());
 
 if (typeof(module.hot) !== 'undefined') {
-  module.hot.accept()
+  module.hot.accept();
 }

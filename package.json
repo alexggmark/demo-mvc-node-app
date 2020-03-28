@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/alexggmark/demo-mvc-node-app#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^3.4.2",
     "file-loader": "^6.0.0",
     "html-loader": "^1.0.0",
@@ -36,8 +42,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.0",
     "babel-loader": "^8.1.0",
     "express": "^4.17.1",
     "webpack-dev-server": "^3.10.3"

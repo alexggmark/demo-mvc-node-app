@@ -13,3 +13,8 @@ h1, h2, h3, h4, h5, p {
   background-size: 100% auto;
   background-repeat: no-repeat;
 }
+#app {
+  border: 2px solid red;
+  min-height: 200px;
+  width: 100%;
+}
