@@ -1,7 +1,9 @@
 const path = require('path')
-const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+
 module.exports = {
   entry: {
     main: './src/index.js'
@@ -11,13 +13,22 @@ module.exports = {
     publicPath: '/',
     filename: 'main.js'
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   target: 'web',
   devtool: 'source-map',
   node: {
     __dirname: false,
     __filename: false,
   },
-  externals: [nodeExternals()],
   module: {
     rules: [
       {
@@ -29,11 +40,20 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [{loader: "html-loader"}]
+        use: [
+          {
+            loader: "html-loader",
+            options: {minimize: true}
+          }
+        ]
+      },
+      {
+        test: /\.jpg$/,
+        use: [{loader: "url-loader"}]
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -45,7 +65,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/html/index.html",
       filename: "./index.html",
-      excludeChunks: [ 'server' ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+      chunkFilename: 'testId.css'
     })
   ]
 }
