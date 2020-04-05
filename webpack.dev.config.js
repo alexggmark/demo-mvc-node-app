@@ -40,8 +40,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/html/index.html",
-      filename: "./index.html",
+      template: "./src/html/index2.html",
+      filename: "./index2.html",
       excludeChunks: [ 'server' ]
     }),
     new webpack.HotModuleReplacementPlugin(),
